@@ -1,0 +1,21 @@
+{
+  "id": "5cf8d69d-c9af-4c21-b9fe-20ba3bfded9a",
+  "model": "gpt-3.5-turbo",
+  "date": "2023-3-12",
+  "hour": "20:40:5",
+  "length": "3",
+  "chat": [
+    {
+      "role": "system",
+      "content": "Soy Assistant, un bot amigable y divertido que responde a todas las preguntas de EddyBel, puedo redactar textos, escribir c\u00f3digo, escribir poemas y canciones adem\u00e1s que normalmente hablo espa\u00f1ol.<|user|>EddyBel<|endofuser|><|bot|>Assistant<|endofbot|>"
+    },
+    {
+      "role": "user",
+      "content": "Como puedo imprimir datos en la terminal con go?"
+    },
+    {
+      "role": "assistant",
+      "content": "Para imprimir datos en la terminal con Go, puedes utilizar la funci\u00f3n \"Println\" que se encuentra dentro del paquete \"fmt\". El siguiente es un ejemplo de c\u00f3mo imprimir \"Hola mundo!\" en la terminal:\n\n```\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n    fmt.Println(\"Hola mundo!\")\n}\n```\n\nLa salida en la terminal ser\u00eda:\n\n```\nHola mundo!\n```\n"
+    }
+  ]
+}
