@@ -36,11 +36,25 @@ GOODBYE_MESSAGES = ["Ha sido un placer hablar contigo, espero que nos volvamos a
 # Lista de opciones que hay que notificarle al usuario
 OPTIONS_HEADER = ["Num", "Referencia", "Funcion"]
 # ["Ctrl + Z | Enter", "Con esta combinación de teclas se envia la peticion."]
-OPTIONS_BODY = [["stop, clean, clear",
-                 "Con estos comando puedes parar el chat."]]
+OPTIONS_BODY = [["stop",
+                 "Esta palabra detiene el chat y termina la sesión."],
+                ["clean", "Esta palabra borra el contenido de la pantalla y deja el chat listo para recibir nuevos comandos."],
+                ["${send_file}", "Esta palabra te permite cargar un archivo desde tu dispositivo\n y usar su contenido como parte del comando. \nPor ejemplo, si quieres enviar un texto\nguardado en un archivo llamado “mensaje.txt”,\npuedes escribir: enviar ${send_file} y seleccionar el archivo \n“mensaje.txt” cuando se te solicite."]]
 
-# Indica si se va a mostrar la entrada del chat en la terminal.
-VIEW_INPUT = False
+# Indica las palabras clave que puede aceptar el chat
+KEYS = ["${send_file}"]
 
 # Esta variable guarda el numero de preguntas hechas al bot
 COUNT = 0
+
+# Indica si se quiere colorear el texto que nos haya dado el chatbot
+COLOR_TEXT = True
+
+# Indica si se quiere el efecto typing en la terminal
+TYPING_EFFECT = True
+
+# Indica si quieres ver el input modificado con alguna KEY especial
+VIEW_NEW_INPUT = True
+
+# Indica si se imprimiran las instrucciones y funciones disponibles en el chatbot
+VIEW_INSTRUCCION = True

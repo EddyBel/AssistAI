@@ -41,3 +41,8 @@ class ChatGPT:
 
         # Retorna la respuesta del modelo
         return response
+
+    def reset_conversation(self):
+        # Regresamos el chat con la instruccion base para iniciar una nueva conversación.
+        self.chat = [{
+            "role": "system", "content": f"Soy {NAME_BOT}, un bot amigable y divertido que responde a todas las preguntas de {NAME_USER}, puedo redactar textos, escribir código, escribir poemas y canciones además que normalmente hablo español.<|user|>{NAME_USER}<|endofuser|><|bot|>{NAME_BOT}<|endofbot|>"}]
