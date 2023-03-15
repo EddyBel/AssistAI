@@ -1,0 +1,209 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: <Estos mensajes inician la conversacion>
+msgid "Hola {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr "Bonjour {NAME_USER}, comment puis-je vous aider ?"
+
+msgid "¿Qué tal {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr "que diriez-vous de {NAME_USER}, comment puis-je vous aider ?"
+
+msgid "¿Cómo estás {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr "comment allez-vous {NAME_USER}, comment puis-je vous aider ?"
+
+msgid "¿Cómo te va {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr "comment allez-vous {NAME_USER}, comment puis-je vous aider ?"
+
+msgid "¿Qué hay de nuevo {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr "quoi de neuf {NAME_USER}, comment puis-je vous aider ?"
+
+msgid "Encantado/a de conocerte {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr "Enchanté {NAME_USER}, comment puis-je vous aider ?"
+
+msgid "Mucho gusto {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr "Ravi de vous rencontrer {NAME_USER}, comment puis-je vous aider ?"
+
+msgid "Un placer {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr "Avec plaisir {NAME_USER}, comment puis-je vous aider ?"
+
+msgid "Bienvenido/a {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr "Bienvenue {NAME_USER}, comment puis-je vous aider ?"
+
+msgid "Saludos {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr "Bonjour {NAME_USER}, comment puis-je vous aider ?"
+
+#: <Esta es una lista de mensajes despedida que se mostraran en el chat manera
+#: aleatoria al terminal la conversacion>
+msgid ""
+"Ha sido un placer hablar contigo, espero que nos volvamos a ver pronto. "
+"¡Hasta la vista!"
+msgstr ""
+"Ce fut un plaisir de discuter avec vous, j'espère que nous nous reverrons "
+"bientôt. À un de ces quatre!"
+
+msgid ""
+"Te agradezco mucho tu tiempo y tu atención, ojalá podamos seguir en "
+"contacto. ¡Que tengas un buen día!"
+msgstr ""
+"Merci beaucoup pour votre temps et votre attention, j'espère que nous "
+"pourrons rester en contact. Passe une bonne journée!"
+
+msgid ""
+"Me encantó conversar contigo, eres una persona muy interesante. Te deseo lo "
+"mejor. ¡Nos vemos!"
+msgstr ""
+"J'ai adoré discuter avec toi, tu es une personne très intéressante. Je te "
+"souhaite le meilleur. À plus!"
+
+msgid ""
+"Gracias por compartir este rato conmigo, me has hecho reír mucho. Cuídate "
+"mucho. ¡Adiós!"
+msgstr ""
+"Merci d'avoir partagé ce moment avec moi, tu m'as beaucoup fait rire. Prends "
+"soin de toi. Adieu!"
+
+msgid ""
+"Disfruté mucho de nuestra charla, aprendí muchas cosas nuevas. Te mando un "
+"abrazo. ¡Hasta pronto!"
+msgstr ""
+"J'ai vraiment apprécié notre conversation, j'ai appris beaucoup de nouvelles "
+"choses. Je t'envoie un câlin. À bientôt!"
+
+msgid ""
+"Te voy a extrañar mucho, pero sé que nos volveremos a encontrar. Eres un "
+"gran amigo/a. ¡Hasta siempre!"
+msgstr ""
+"Tu vas beaucoup me manquer, mais je sais que nous nous reverrons. Tu es un "
+"bon ami. Pour toujours!"
+
+msgid ""
+"No es un adiós, es un hasta luego. Esta despedida no es el final simplemente "
+"significa que te extrañaré hasta que nos encontremos de nuevo."
+msgstr ""
+"Ce n'est pas un au revoir, c'est à plus tard. Cette séparation n'est pas la "
+"fin, cela signifie simplement que tu me manqueras jusqu'à ce que nous nous "
+"revoyions."
+
+msgid ""
+"No quiero decirte adiós, porque sé que nos volveremos a ver. Eres una "
+"persona muy especial para mí. ¡Hasta la próxima!"
+msgstr ""
+"Je ne veux pas te dire au revoir, car je sais que nous nous reverrons. Tu es "
+"une personne très spéciale pour moi. À la prochaine!"
+
+msgid ""
+"Te agradezco por todo lo que me has dado, eres una persona increíble. Espero "
+"que la vida te sonría. ¡Hasta luego!"
+msgstr ""
+"Je te remercie pour tout ce que tu m'as donné, tu es une personne "
+"incroyable. J'espère que la vie te sourit. À plus tard!"
+
+msgid ""
+"Me duele despedirme de ti, pero sé que es lo mejor. Te quiero mucho y te "
+"deseo lo mejor. ¡Adiós!"
+msgstr ""
+"Ça fait mal de te dire au revoir, mais je sais que c'est mieux. Je t'aime "
+"beaucoup et je te souhaite le meilleur. Adieu!"
+
+msgid ""
+"Ha sido un honor conocerte, eres una persona muy admirable. Espero que sigas "
+"cumpliendo tus sueños. ¡Hasta pronto!"
+msgstr ""
+"Ce fut un honneur de vous rencontrer, vous êtes une personne très admirable. "
+"J'espère que vous continuerez à réaliser vos rêves. À bientôt!"
+
+msgid ""
+"Te voy a recordar siempre, eres una persona muy importante en mi vida. "
+"Gracias por todo lo que hemos vivido. ¡Hasta siempre!"
+msgstr ""
+"Je me souviendrai toujours de toi, tu es une personne très importante dans "
+"ma vie. Merci pour tout ce que nous avons vécu. Pour toujours!"
+
+msgid ""
+"No es una triste despedida. Volveremos a encontrarnos de nuevo. Sólo en la "
+"agonía de la separación es cuando buscamos en las profundidades del amor."
+msgstr ""
+"Ce n'est pas un triste au revoir. Nous nous reverrons. C'est seulement dans "
+"l'agonie de la séparation que nous cherchons dans les profondeurs de l'amour."
+
+msgid ""
+"Las manos que dicen adiós son pájaros que van muriendo lentamente. Te echaré "
+"de menos, pero sé que estarás bien. ¡Adiós!"
+msgstr ""
+"Les mains qui disent au revoir sont des oiseaux qui meurent lentement. Tu "
+"vas me manquer, mais je sais que tu iras bien. Adieu!"
+
+msgid ""
+"Cada despedida es un encuentro que queda para más tarde. No te olvides de "
+"mí, yo no me olvidaré de ti. ¡Hasta la vista!"
+msgstr ""
+"Chaque adieu est une rencontre qui reste pour plus tard. Ne m'oublie pas, je "
+"ne t'oublierai pas. À un de ces quatre!"
+
+#: <Mensaje que limpia la conversacion>
+msgid "De que otro teme te gustaria hablar?"
+msgstr "De quelle autre peur voudriez-vous parler?"
+
+#: <Instrucciones> <Encabezados de la tabla instrucciones>
+msgid "ID"
+msgstr "ID"
+
+msgid "Referencia"
+msgstr "Référence"
+
+msgid "Funcion"
+msgstr "Fonction"
+
+#: <Contenido de las Instrucciones>
+msgid "Este comando detiene el chat y termina la sesión."
+msgstr "Cette commande arrête le chat et met fin à la session."
+
+msgid "Este comando limpia la conversacion"
+msgstr "Cette commande efface la conversation"
+
+msgid "Este comando permite cargar el contenido de un archivo en el input."
+msgstr ""
+"Cette commande permet de charger le contenu d'un fichier dans l'entrée."
+
+msgid "Nombre de usuario"
+msgstr "Nom d'utilisateur"
+
+msgid "Nombre del bot"
+msgstr "Nom du robot"
+
+msgid "Modelo del bot"
+msgstr "Modèle de robot"
+
+#: <Mensajes de error>
+msgid "Ocurrio un error:"
+msgstr "Une erreur s'est produite :"
+
+#: <Otras Instrucciones>
+msgid "Como te llamas?"
+msgstr "Comment tu t'apelles?"
+
+msgid "Por favor, ingresa tu clave de API de OpenAI:"
+msgstr "Veuillez saisir votre clé API OpenAI:"
+
+#: <Contexto que usa el bot>
+msgid ""
+"Soy {NAME_BOT}, un bot amigable y divertido que responde a todas las "
+"preguntas de {NAME_USER}, puedo redactar textos, escribir código, escribir "
+"poemas y canciones.<|user|>{NAME_USER}<|endofuser|><|bot|>{NAME_BOT}<|"
+"endofbot|>"
+msgstr ""
+"Je suis {NAME_BOT}, un bot sympathique et amusant qui répond à toutes les "
+"questions de {NAME_USER}, je peux écrire des textes, écrire du code, écrire "
+"des poèmes et des chansons.<|user|>{NAME_USER}<|endofuser|><| bot|"
+" >{NAME_BOT}<|endofbot|>"

@@ -1,60 +1,46 @@
-from time import sleep
-from colorama import Fore, Style, Back, ansi
-from settings import NAME_BOT, NAME_USER, KEYS
-from datetime import datetime
+from colorama import Style, Fore, ansi
 from pygments import highlight
 from pygments.lexers import guess_lexer, get_lexer_by_name
 from pygments.formatters import TerminalFormatter
-import re
-import os
-import sys
-import random
-import json
+from utils.files import get_file, read_file
+from settings import KEYS
 import shutil
-from rich.table import Table
-from rich.console import Console
-import tkinter as tk
-from tkinter import filedialog
-
-# Crea una instancia de la consola para centrar elementos
-console = Console()
+import re
 
 
-def clear_console() -> None:
-    """Esta funcion limpia la pantalla."""
-    if os.name == 'nt':  # si el sistema operativo es Windows
-        os.system('cls')  # ejecuta el comando cls
-    else:  # si el sistema operativo es Linux o MacOS
-        os.system('clear')  # ejecuta el comando clear
-
-
-def print_table(headers: list, body: list, title: str = "Instrucciones"):
-    """Esta funcion imprime una tabla con los datos pasados por parametro
+def replace_reference(text: str, reference: str, replacement: str) -> str:
+    """
+    Busca la referencia en el texto y la reemplaza por la cadena de reemplazo.
 
     Args:
-        headers (list): Lista de encabezados a utilizar
-        body (list): Lista de elementos que tiene la tabla
-        title (str, optional): Titulo que tendra la tabla. Defaults to "Instrucciones".
+    text (str): El texto donde se buscará la referencia.
+    reference (str): La referencia que se quiere reemplazar, debe ir entre llaves y comenzar con un signo de dólar ($), por ejemplo "${NOMBRE}".
+    replacement (str): La cadena de texto que se usará para reemplazar la referencia.
+
+    Returns:
+    str: El texto resultante con la referencia reemplazada por la cadena de reemplazo, o el texto original si la referencia no se encuentra en el texto.
     """
-    # Inicializar una variable para contar las filas
-    count = 0
-    # Crear un objeto de tipo Table con un título
-    table = Table(title=title)
-    # Recorrer la lista de encabezados y agregar una columna por cada uno
-    for head in headers:
-        table.add_column(head, justify="center", style="cyan", no_wrap=True)
-    # Recorrer la lista de cuerpo y agregar una fila por cada elemento
-    for item in body:
-        table.add_row(str(count), item[0], item[1], end_section=True)
-        # Incrementar el contador en uno
-        count += 1
-    # Imprimir la tabla en la consola con justificación al centro
-    console.print(table, justify="center")
-    # Imprimir una línea en blanco
-    print()
+
+    return text.replace(reference, replacement) if reference in text else text
 
 
-def code_detect(code: str):
+def search_and_replace_commands(text: str) -> str:
+    # Recorrer la lista de keys
+    for key in KEYS:
+        # Verificar si el texto contiene la key
+        if key in text and key == "${send_file}":
+            # Obten la ruta del archivo con el explorador de archivos del sistema
+            file_path = get_file()
+            # Lee el archivo y obtiene su contenido
+            content_file = read_file(file_path)
+            # Remplaza el contenido obtenido en el texto
+            text = text.replace(key, content_file)
+
+    # Devolver el texto modificado
+    return text
+
+
+def code_detect(code: str) -> (str or None):
     """Esta función recibe un texto y detecta si contiene algún código de programación en él y retorna el código encontrado."""
 
     # Definir una lista de expresiones regulares para identificar los lenguajes de programación más comunes
@@ -175,150 +161,3 @@ def color_code(text: str) -> str:
     # Usar la función re.sub() para reemplazar las subcadenas que coinciden con el patrón con el resultado de la función replacement
     # Usar el argumento flags=re.DOTALL para que el patrón coincida con cualquier carácter, incluso los saltos de línea
     return re.sub(pattern, replacement, text, flags=re.DOTALL)
-
-
-def typingeffect(text: str, time: float = None) -> None:
-    """Esta funcion imprime de manera progresiva el texto pasado por parametro
-
-        Args:
-            texto (str): Texto a mostrar de manera progresiva
-    """
-
-    if time is None:
-        length = len(text)
-        time = 0.009 if length > 400 else 0.04
-
-    for letter in text:  # recorre cada letra del texto
-        sleep(time)
-        sys.stdout.write(letter)  # escribe la letra en la salida estándar
-        sys.stdout.flush()  # actualiza la salida estándar
-
-
-def get_random_element_by_array(array: list) -> any:
-    """Esta funcion obtiene un elemento aleatorio de un array
-
-    Args:
-        array (list): Array a utilizar
-
-    Returns:
-        any: Elemento aleatorio
-    """
-    # Usamos la función random.choice () para elegir un elemento al azar del array
-    element = random.choice(array)
-    # Devolvemos el elemento elegido
-    return element
-
-
-def update_chat(id: int, model: str, chat: list):
-    """Esta funcion guarda los datos obtenidos hasta el momento del chat en un archivo JSON.
-
-    Args:
-        id (int): Id de la conversacion
-        model (str): Modelo que se esta utilizando para responder preguntas
-        chat (list): Lista que contiene la conversacion con el chat
-    """
-
-    # Obtener la fecha y hora actual
-    date_now = datetime.now()
-
-    # Intentar abrir el archivo JSON que corresponde al id dado
-    try:
-        with open(f"./conversations/{id}.json", "r") as file:
-            # Cargar los datos del archivo en una variable llamada data
-            data = json.load(file)
-
-    # Si el archivo no existe, manejar la excepción FileNotFoundError
-    except FileNotFoundError:
-        # Crear un diccionario llamado data con la información del chat
-        data = {
-            "id": str(id),  # El id del chat como una cadena
-            "model": model,  # El modelo usado para el chat
-            # La fecha del chat en formato año-mes-día
-            "date": f"{date_now.year}-{date_now.month}-{date_now.day}",
-            # La hora del chat en formato hora:minuto:segundo
-            "hour": f"{date_now.hour}:{date_now.minute}:{date_now.second}",
-            "length": str(len(chat)),  # La longitud del chat como una cadena
-            "chat": chat  # La lista del chat
-        }
-
-    # Actualizar el campo chat del diccionario data con el parámetro chat
-    data["chat"] = chat
-    # Actualizar el campo length del diccionario data con la longitud del parámetro chat
-    data["length"] = str(len(chat))
-
-    # Abrir el archivo JSON que corresponde al id dado en modo escritura
-    with open(f"./conversations/{id}.json", "w") as file:
-        # Guardar el diccionario data en el archivo como un objeto JSON
-        json.dump(data, file)
-
-
-def bot_indicator() -> None:
-    """Esta funcion imprime la referencia que el bot esta hablando en el char"""
-    print(Fore.BLUE + f"@[{NAME_BOT}]" + Style.RESET_ALL)
-
-
-def user_indicator() -> None:
-    """Esta funcion imprime la referencia que el usuario esta hablando en el char"""
-    print(Fore.CYAN + f"@[{NAME_USER}]" + Style.RESET_ALL)
-
-
-def read_file(path: str):
-    """Esta funcion lee un archivo con la ruta pasada por parametro
-
-    Args:
-        path (str): Ruta donde se encuentra el archivo
-
-    Returns:
-        str: Contenido del archivo
-    """
-
-    # Abrir el archivo en el path con el modo 'r' (lectura) y la codificación "UTF-8"
-    with open(path, 'r', encoding="UTF-8") as file:
-        # Leer el contenido del archivo y asignarlo a una variable llamada content
-        content = file.read()
-    # Devolver el valor de la variable content
-    return content
-
-
-def get_file():
-    """Esta funcion habre el explorador de archivos, para poder seleccionar un archivo
-
-    Returns:
-        str: Retorna la ruta del archivo seleccionado
-    """
-
-    # Crear un objeto de la clase tk.Tk y asignarlo a una variable llamada root
-    root = tk.Tk()
-    # Ocultar la ventana principal de root
-    root.withdraw()
-    # Invocar el método askopenfilename de la clase filedialog y asignar el resultado a una variable llamada file_path
-    file_path = filedialog.askopenfilename()
-    # Devolver el valor de la variable file_path
-    return file_path
-
-# Definir la función que busca y reemplaza
-
-
-def search_and_replace(text: str):
-    # Recorrer la lista de keys
-    for key in KEYS:
-        # Verificar si el texto contiene la key
-        if key in text and key == "${send_file}":
-            file_path = get_file()
-            content_file = read_file(file_path)
-            text = text.replace(key, content_file)
-
-    # Devolver el texto modificado
-    return text
-
-
-# ! Aqui se prueban algunas funciones sin requerir al bot
-if __name__ == "__main__":
-    # * RUTA DEL TEXTO DE PRUEBA "./assets/text.md"
-    path = get_file()
-    text = read_file(path)
-    # text = read_file("./assets/text.md")
-
-    newText = color_code(text=text)
-    print(newText)
-    # typingeffect(newText)

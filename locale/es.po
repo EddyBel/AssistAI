@@ -1,0 +1,136 @@
+#: <Estos mensajes inician la conversacion>
+
+msgid "Hola {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr ""
+
+msgid "¿Qué tal {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr ""
+
+msgid "¿Cómo estás {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr ""
+
+msgid "¿Cómo te va {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr ""
+
+msgid "¿Qué hay de nuevo {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr ""
+
+msgid "Encantado/a de conocerte {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr ""
+
+msgid "Mucho gusto {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr ""
+
+msgid "Un placer {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr ""
+
+msgid "Bienvenido/a {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr ""
+
+msgid "Saludos {NAME_USER}, ¿en qué te puedo ayudar?"
+msgstr ""
+
+
+
+#: <Esta es una lista de mensajes de despedida que se mostraran en el chat de manera aleatoria al terminal la conversacion>
+
+msgid "Ha sido un placer hablar contigo, espero que nos volvamos a ver pronto. ¡Hasta la vista!"
+msgstr ""
+
+msgid "Te agradezco mucho tu tiempo y tu atención, ojalá podamos seguir en contacto. ¡Que tengas un buen día!"
+msgstr ""
+
+msgid "Me encantó conversar contigo, eres una persona muy interesante. Te deseo lo mejor. ¡Nos vemos!"
+msgstr ""
+
+msgid "Gracias por compartir este rato conmigo, me has hecho reír mucho. Cuídate mucho. ¡Adiós!"
+msgstr ""
+
+msgid "Disfruté mucho de nuestra charla, aprendí muchas cosas nuevas. Te mando un abrazo. ¡Hasta pronto!"
+msgstr ""
+
+msgid "Te voy a extrañar mucho, pero sé que nos volveremos a encontrar. Eres un gran amigo/a. ¡Hasta siempre!"
+msgstr ""
+
+msgid "No es un adiós, es un hasta luego. Esta despedida no es el final simplemente significa que te extrañaré hasta que nos encontremos de nuevo."
+msgstr ""
+
+msgid "No quiero decirte adiós, porque sé que nos volveremos a ver. Eres una persona muy especial para mí. ¡Hasta la próxima!"
+msgstr ""
+
+msgid "Te agradezco por todo lo que me has dado, eres una persona increíble. Espero que la vida te sonría. ¡Hasta luego!"
+msgstr ""
+
+msgid "Me duele despedirme de ti, pero sé que es lo mejor. Te quiero mucho y te deseo lo mejor. ¡Adiós!"
+msgstr ""
+
+msgid "Ha sido un honor conocerte, eres una persona muy admirable. Espero que sigas cumpliendo tus sueños. ¡Hasta pronto!"
+msgstr ""
+
+msgid "Te voy a recordar siempre, eres una persona muy importante en mi vida. Gracias por todo lo que hemos vivido. ¡Hasta siempre!"
+msgstr ""
+
+msgid "No es una triste despedida. Volveremos a encontrarnos de nuevo. Sólo en la agonía de la separación es cuando buscamos en las profundidades del amor."
+msgstr ""
+
+msgid "Las manos que dicen adiós son pájaros que van muriendo lentamente. Te echaré de menos, pero sé que estarás bien. ¡Adiós!"
+msgstr ""
+
+msgid "Cada despedida es un encuentro que queda para más tarde. No te olvides de mí, yo no me olvidaré de ti. ¡Hasta la vista!"
+msgstr ""
+
+#: <Mensaje que limpia la conversacion>
+
+msgid "De que otro teme te gustaria hablar?"
+msgstr ""
+
+#: <Instrucciones>
+
+#: <Encabezados de la tabla instrucciones>
+
+msgid "ID"
+msgstr ""
+
+msgid "Referencia"
+msgstr ""
+
+msgid "Funcion"
+msgstr ""
+
+#: <Contenido de las Instrucciones>
+
+msgid "Este comando detiene el chat y termina la sesión."
+msgstr ""
+
+msgid "Este comando limpia la conversacion"
+msgstr ""
+
+msgid "Este comando permite cargar el contenido de un archivo en el input."
+msgstr ""
+
+msgid "Nombre de usuario"
+msgstr ""
+
+msgid "Nombre del bot"
+msgstr ""
+
+msgid "Modelo del bot"
+msgstr ""
+
+#: <Mensajes de error>
+
+msgid "Ocurrio un error:"
+msgstr ""
+
+#: <Otras Instrucciones>
+
+msgid "Como te llamas?"
+msgstr ""
+
+msgid "Por favor, ingresa tu clave de API de OpenAI:"
+msgstr ""
+
+#: <Contexto que usa el bot>
+
+msgid "Soy {NAME_BOT}, un bot amigable y divertido que responde a todas las preguntas de {NAME_USER}, puedo redactar textos, escribir código, escribir poemas y canciones.<|user|>{NAME_USER}<|endofuser|><|bot|>{NAME_BOT}<|endofbot|>"
+msgstr ""
