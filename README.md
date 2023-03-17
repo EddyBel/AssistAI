@@ -1,92 +1,136 @@
 <h1 align="center">Chat Terminal</h1>
 
-![banner_01](https://img.shields.io/github/last-commit/EddyBel/Chat-Terminal?color=%23AED6F1&style=for-the-badge)
-![banner_02](https://img.shields.io/github/license/EddyBel/Chat-Terminal?color=%23EAECEE&style=for-the-badge)
-![banner_03](https://img.shields.io/github/languages/top/EddyBel/Chat-Terminal?color=%23F9E79F&style=for-the-badge)
-![banner_04](https://img.shields.io/github/languages/count/EddyBel/Chat-Terminal?color=%23ABEBC6&style=for-the-badge)
-![banner_05](https://img.shields.io/github/languages/code-size/EddyBel/Chat-Terminal?color=%23F1948A&style=for-the-badge)
+<p align="center" >
+<img src="https://img.shields.io/github/last-commit/EddyBel/Chat-Terminal?color=%23AED6F1&style=for-the-badge" />
+<img src="https://img.shields.io/github/license/EddyBel/Chat-Terminal?color=%23EAECEE&style=for-the-badge" />
+<img src="https://img.shields.io/github/languages/top/EddyBel/Chat-Terminal?color=%23F9E79F&style=for-the-badge" />
+<img src="https://img.shields.io/github/languages/count/EddyBel/Chat-Terminal?color=%23ABEBC6&style=for-the-badge" />
+<img src="https://img.shields.io/github/languages/code-size/EddyBel/Chat-Terminal?color=%23F1948A&style=for-the-badge" />
+</p>
 
----
+<p align="center">Simple chatbot from the terminal</p>
 
-Este proyecto consiste en crear un chatbot que utiliza el modelo de lenguaje GPT-3.5-turbo de OpenAI para generar respuestas a las entradas del usuario. El chatbot se ejecuta en la terminal y se comunica con la api de OpenAI mediante la librería de python de OpenAI.
+<p aling="center" >
+<img src="./assets/capture_4.png" width="100%" />
+<img src="./assets/capture_8.png" width="100%" />
+<img src="./assets/capture_6.png" width="100%" />
+<!-- <img src="./assets/capture_3.png" /> -->
+</p>
 
-## Proyecto
+This project consists of creating a chatbot that uses the OpenAI GPT-3.5-turbo language model to generate responses to user input. The chatbot runs in the terminal and communicates with the OpenAI api using the OpenAI python library.
 
-![Captura_1](./assets/capture_1.png)
-![Captura_2](./assets/capture_2.png)
-![Captura_3](./assets/capture_3.png)
-![Captura_4](./assets/capture_4.png)
+## 😸 Why the project?
 
-## ¿Por que del proyecto?
+The goal of this project is to create a terminal chatbot using the ChatGPT API to provide users with a smooth and satisfying chat experience. This chatbot will allow users to interact with ChatGPT's artificial intelligence directly from the command line, without the need for a graphical user interface.
 
-El objetivo de este proyecto es crear un chatbot de terminal utilizando la API de ChatGPT para proporcionar a los usuarios una experiencia de conversación fluida y satisfactoria. Este chatbot permitirá a los usuarios interactuar con la inteligencia artificial de ChatGPT directamente desde la línea de comandos, sin la necesidad de utilizar una interfaz gráfica de usuario.
+The use of Python as a programming language will allow the implementation of a simple and easy to understand terminal chatbot. The ChatGPT API will provide the artificial intelligence needed to generate accurate and consistent responses to user queries.
 
-El uso de Python como lenguaje de programación permitirá la implementación de un chatbot de terminal simple y fácil de entender. La API de ChatGPT proporcionará la inteligencia artificial necesaria para generar respuestas precisas y coherentes a las consultas de los usuarios.
+This project will also allow developers to improve their skills in Python and chatbot development. Furthermore, they can also use this project as a foundation to build more complex and sophisticated chatbots in the future.
 
-Este proyecto también permitirá a los desarrolladores mejorar sus habilidades en Python y en el desarrollo de chatbots. Además, también pueden usar este proyecto como base para construir chatbots más complejos y sofisticados en el futuro.
+In short, the main goal of this project is to provide users with an easy and accessible way to interact with ChatGPT's artificial intelligence, while also offering an opportunity for developers to improve their Python and chatbot development skills.
 
-En resumen, el objetivo principal de este proyecto es proporcionar a los usuarios una forma fácil y accesible de interactuar con la inteligencia artificial de ChatGPT, al mismo tiempo que ofrece una oportunidad para que los desarrolladores mejoren sus habilidades en Python y en el desarrollo de chatbots.
+## Requirements
 
-## Pasos para la ejecución
+- [x] [Python>=3.7](https://www.python.org/downloads/)
+- [x] [Virtualenv](https://virtualenv.pypa.io/en/latest/)
+- [x] [Openai API Key](https://platform.openai.com/account/api-keys)
 
-Descarga o clona el repositorio del proyecto con la siguiente instrucción.
+## Setting
+
+The program has a series of settings that allow the model to behave in one way or another. These are found in the [settings.py](./settings.py) script.
+
+| VARIABLE         | TYPE         | FUNCTION                                                                                                                                          |
+| ---------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| NAME_BOT         | STRING       | Indicates the name that the bot will use                                                                                                          |
+| NAME_USER        | STRING       | Indicates the username, this value is normally prompted during code execution, but can be omitted and assigned directly in the variable           |
+| KEYS             | LIST[STRING] | Indicates the special phrases that execute some action in the chat                                                                                |
+| COLOR_TEXT       | BOOLEAN      | Indicates if you want to color the text returned by the bot                                                                                       |
+| TYPING_EFFECT    | BOOLEAN      | Indicates if you want to have a typing effect on the bot's response                                                                               |
+| VIEW_NEW_INPUT   | BOOLEAN      | Indicates if you want to see what the final input that will be sent to the bot is like                                                            |
+| VIEW_INSTRUCCION | BOOLEAN      | Indicates if you want to show the instructions                                                                                                    |
+| VIEW_CONTEXT     | BOOLEAN      | Indicates if the context that is sent to the bot when starting the conversation will be displayed                                                 |
+| IA               | STRING       | Indicates the AI that will be used                                                                                                                |
+| MODEL            | STRING       | Indicates the model that the AI will use                                                                                                          |
+| CONTEXT          | STRING       | It indicates the context that the bot will use to start the conversation and its behavior as well as understanding its name and that of the user. |
+| WELCOME_MESSAGES | LIST[STRING] | This is a list of welcome messages when starting the conversation                                                                                 |
+| GOODBYE_MESSAGES | LIST[STRING] | This is a list of farewell messages that will be displayed at the end of the conversation                                                         |
+| OPTIONS_HEADER   | LIST[STRING] | These are the names that the instruction table uses as headers                                                                                    |
+| OPTIONS_BODY     | LIST[STRING] | This list represents the contents of the instruction table                                                                                        |
+
+## Features
+
+### Current characteristics
+
+- [x] Compatibility with several languages Spanish, English, Japanese and French.
+- [x] Compatible with the openai API which allows to integrate the available GPT models.
+- [x] Coloring of the code and text that the chatbot returns.
+- [x] Ability to use the content of files (especially code) to complement the input.
+
+### Future features
+
+At the moment there is no fixed time objective or goal to add new features but over time I hope to increase the functions of the program.
+
+- [ ] Compatibility with more languages and in a better way.
+- [ ] Use of other AI models such as LlaMa, Bard, OpenAssitant, etc.
+- [ ] Possibility of extracting the content of different files such as Word and Pdf.
+- [ ] Possibility to extract audio text with Whisper and integrate to propmt.
+- [ ] Ability to insert images at the prompt as indicated by the GPT-4 api.
+- [ ] Ability to generate script based on the generated code.
+- [ ] Ability to fully function locally with AI models that allow it.
+
+## How to use
+
+The first thing is to clone this repository to your local device and enter the project folder with the following commands.
 
 ```bash
 git clone https://github.com/EddyBel/Chat-Terminal.git
-```
 
-Abre una terminal en la ubicación del repositorio descargado.
-
-```bash
 cd Chat-Terminal
 ```
 
-Crea un nuevo entorno virtual de Python utilizando virtualenv. Si aún no tienes virtualenv instalado, primero debes instalarlo usando el siguiente comando:
-
-```bash
-pip install virtualenv
-```
-
-Luego, puedes crear el entorno virtual utilizando el siguiente comando:
+Create a new virtual environment with python virtualenv, for this example the virtual environment will be named "env", but you can call it whatever you like.
 
 ```bash
 python -m venv env
 ```
 
-Activa el entorno virtual utilizando el siguiente comando:
+Activate the virtual environment with the following command according to your device.
 
-> #### Windows
->
-> ```bash
-> .\env\Scripts\activate
-> ```
+### Windows
 
-> #### Linux
->
-> ```bash
-> source env/bin/activate
-> ```
+```bash
+ .\env\Scripts\activate
+```
 
-Ahora, instala los módulos necesarios para el proyecto utilizando el archivo requirements.txt. Para hacer esto, ejecuta el siguiente comando:
+### Linux
+
+```bash
+source env/bin/activate
+```
+
+Install all the python packages that are required for it to run correctly.
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Una vez que se hayan instalado todos los módulos necesarios, puedes ejecutar el archivo principal del proyecto utilizando el siguiente comando:
+Once all the necessary modules have been installed, you can proceed to run the program with the following command, and that's it!
 
 ```bash
 python main.py
 ```
 
-¡Eso es todo! El chatbot de terminal utilizando la API de ChatGPT ahora debería estar funcionando correctamente. Ahora puedes probarlo haciendo algunas preguntas en la terminal y viendo las respuestas generadas por el bot.
+## Licence
 
-> ### Nota
->
-> Para usar el chatbot es necesario que tenga un token de openai, a la hora de ejecutar el chatbot este le
-> pedira el token, una vez ingresandolo listo puede preguntar sin problemas a chatgpt.
+<h3 align="center">MIT</h3>
 
-## Tecnologias utilizadas
+---
 
-- Python
-- ChatGPT
+<p align="center">
+  <a href="https://github.com/EddyBel" target="_blank">
+    <img alt="Github" src="https://img.shields.io/badge/GitHub-%2312100E.svg?&style=for-the-badge&logo=Github&logoColor=white" />
+  </a> 
+  <a href="https://www.linkedin.com/in/eduardo-rangel-eddybel/" target="_blank">
+    <img alt="LinkedIn" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a> 
+</p>

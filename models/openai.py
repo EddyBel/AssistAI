@@ -1,7 +1,7 @@
+from settings import NAME_USER, NAME_BOT, CONTEXT, MODEL
 from utils.console import bot_indicator
 from utils.format import replace_reference
 from translate import _
-from settings import NAME_USER, NAME_BOT
 import openai
 
 
@@ -16,15 +16,13 @@ class ChatGPT:
         # Asigna la apikey a el codigo de openai
         openai.api_key = self.api_key
         # Modelo de openia a utilizar
-        self.model = "gpt-3.5-turbo"
+        self.model = MODEL
         # Aqui se almacena la conversacion del chat
         # Agregamos el token <|system|> al inicio del texto de entrada con el contexto que queremos darle al bot
         # Usamos el token <|user|> para indicar el nombre del usuario y el token <|bot|> para indicar el nombre del bot
-        # Obten el contexto en el idioma solicitado
-        context = _("Soy {NAME_BOT}, un bot amigable y divertido que responde a todas las preguntas de {NAME_USER}, puedo redactar textos, escribir código, escribir poemas y canciones.<|user|>{NAME_USER}<|endofuser|><|bot|>{NAME_BOT}<|endofbot|>")
         # Donde se tenga la refencia remplazalo por los datos solicitados
         self.context = replace_reference(replace_reference(
-            context, "{NAME_BOT}", NAME_BOT), "{NAME_USER}", NAME_USER)
+            CONTEXT, "{NAME_BOT}", NAME_BOT), "{NAME_USER}", NAME_USER)
         print(self.context)
         # Crea la estructura del chat
         self.chat = [{

@@ -1,10 +1,11 @@
-import sys
-import os
 from settings import NAME_BOT, NAME_USER
 from colorama import Style, Fore
 from rich.table import Table
 from rich.console import Console
-
+from colorama import Style
+import sys
+import os
+import asyncio
 
 # Crea una instancia de la consola para centrar elementos
 console = Console()
@@ -26,21 +27,16 @@ def print_table(headers: list, body: list, title: str = "Instrucciones"):
         body (list): Lista de elementos que tiene la tabla
         title (str, optional): Titulo que tendra la tabla. Defaults to "Instrucciones".
     """
-    # Inicializar una variable para contar las filas
     count = 0
-    # Crear un objeto de tipo Table con un título
     table = Table(title=title)
-    # Recorrer la lista de encabezados y agregar una columna por cada uno
+
     for head in headers:
         table.add_column(head, justify="center", style="cyan", no_wrap=True)
-    # Recorrer la lista de cuerpo y agregar una fila por cada elemento
+
     for item in body:
         table.add_row(str(count), item[0], item[1], end_section=True)
-        # Incrementar el contador en uno
         count += 1
-    # Imprimir la tabla en la consola con justificación al centro
     console.print(table, justify="center")
-    # Imprimir una línea en blanco
     print()
 
 
@@ -54,66 +50,87 @@ def user_indicator() -> None:
     print(Fore.CYAN + f"@[{NAME_USER}]" + Style.RESET_ALL)
 
 
-def create_menu(options):
+def create_menu(options: list):
+    # Guarda la selección de idioma
     selected_option = 0
 
-    if os.name == "nt":  # Windows
+    # Identifica el sistema operativo para poder utilizar la funcion (Windows)
+    # Crea un bucle infinito que manejara el menu
+    # Utiliza las flechas arriba y abajo para moverte en el menu
+    if os.name == "nt":
         import msvcrt
 
         while True:
-            # Print the menu options
+
+           # Imprime las opciones dek menu
+           # La que coincida con la seleccionada le agregas "->" y si no "  "
             for i in range(len(options)):
                 if i == selected_option:
                     print("-> " + options[i])
                 else:
                     print("   " + options[i])
-            # Wait for user input
+
+           # Captura la entrada del teclado
+           # Con ellas maneja la posición de la flecha
+           # Si se selecciona la flecha arriba entonces suma a la variable select 1 con el limite maximo de opciones
+           # Si se selecciona la flecha abajo entonces resta a la variable select 1 con el limite minimo de opciones
+           # Y si la tecla es Enter para el bucle, con la opcion guardada en la variable
             key = msvcrt.getch()
-            if key == b'\x1b':  # Esc key
+            if key == b'\x1b':
                 break
-            elif key == b'H' or key == b'K':  # Up arrow key
+            elif key == b'H' or key == b'K':
                 selected_option = max(0, selected_option - 1)
-            elif key == b'P' or key == b'M':  # Down arrow key
+            elif key == b'P' or key == b'M':
                 selected_option = min(len(options) - 1, selected_option + 1)
             elif key == b'\r':  # Enter key
                 break
 
-            # Move the cursor back to the top of the menu
+            # Mueve el cursor en las diferentes opciones
             sys.stdout.write("\033[F" * len(options))
             sys.stdout.flush()
 
-    else:  # Linux and macOS
+    # Misma funcion pero para el sistema Linux y MacOS
+    else:
         import tty
         import termios
 
-        # Save the terminal settings
         old_settings = termios.tcgetattr(sys.stdin)
         tty.setcbreak(sys.stdin.fileno())
 
         while True:
-            # Print the menu options
+
             for i in range(len(options)):
                 if i == selected_option:
                     print("-> " + options[i])
                 else:
                     print("   " + options[i])
 
-            # Wait for user input
             key = ord(sys.stdin.read(1))
-            if key == 27:  # Esc key
+            if key == 27:
                 break
-            elif key == 65:  # Up arrow key
+            elif key == 65:
                 selected_option = max(0, selected_option - 1)
-            elif key == 66:  # Down arrow key
+            elif key == 66:
                 selected_option = min(len(options) - 1, selected_option + 1)
-            elif key == 13:  # Enter key
+            elif key == 13:
                 break
 
-            # Move the cursor back to the top of the menu
             sys.stdout.write("\033[F" * len(options))
             sys.stdout.flush()
 
-        # Restore the terminal settings
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, old_settings)
 
-    return selected_option
+    return options[selected_option]
+
+
+async def charge_indicator():
+    """Esta funcion crea un efecto de carga en la terminal"""
+    bar_chars = ["|", "/", "-", "\\"]
+    i = 0
+    while True:
+        character = bar_chars[i % len(bar_chars)]
+        print(
+            "\r" + f"{Style.DIM}Loading {character}{Style.RESET_ALL}", end="", flush=True)
+        i += 1
+        await asyncio.sleep(0.1)
+        print("\r" + " " * 20 + "\r", end="", flush=True)

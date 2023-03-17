@@ -8,6 +8,17 @@ NAME_BOT = "Assistant"
 print(Fore.BLUE + f"@[{NAME_BOT}]" + Style.RESET_ALL)
 NAME_USER = input(_("Como te llamas?") + ": ")
 
+# Indica el modelo que se usara en el chat
+# * ChatGPT
+IA = "ChatGPT"
+
+# Indica el modelo que utilizara la IA
+# * gpt-3.5-turbo
+MODEL = "gpt-3.5-turbo"
+
+# Indica el contexto que utilizara la IA para la conversación.
+CONTEXT = _("Soy {NAME_BOT}, un bot amigable y divertido que responde a todas las preguntas de {NAME_USER}, puedo redactar textos, escribir código, escribir poemas y canciones.<|user|>{NAME_USER}<|endofuser|><|bot|>{NAME_BOT}<|endofbot|>")
+
 # Este mensaje es el que inicia la conversacion
 WELCOME_MESSAGES = [_("Hola {NAME_USER}, ¿en qué te puedo ayudar?"),
                     _("¿Qué tal {NAME_USER}, ¿en qué te puedo ayudar?"),
@@ -41,19 +52,25 @@ GOODBYE_MESSAGES = [_("Ha sido un placer hablar contigo, espero que nos volvamos
 OPTIONS_HEADER = [_("ID"),
                   _("Referencia"),
                   _("Funcion")]
-# ["Ctrl + Z | Enter", "Con esta combinación de teclas se envia la peticion."]
+
+# Lista que contiene las instrucciones del programa
+# * Nombre del usuario y una descripción
+# * Nombre del bot y otra descripción
+# * Modelo que utiliza el chat y otra descripción
+# * IA que utiliza el chat
 OPTIONS_BODY = [["stop",
                  _("Este comando detiene el chat y termina la sesión.")],
                 ["clean",
                  _("Este comando limpia la conversacion")],
                 ["${send_file}",
-                 _("Este comando permite cargar el contenido de un archivo en el input.")]]
+                 _("Este comando permite cargar el contenido de un archivo en el input.")],
+                [NAME_USER, _("Nombre de usuario")],
+                [NAME_BOT, _("Nombre del bot")],
+                [MODEL, _("Modelo del bot")],
+                [IA, "IA"]]
 
 # Indica las palabras clave que puede aceptar el chat
 KEYS = ["${send_file}"]
-
-# Esta variable guarda el numero de preguntas hechas al bot
-COUNT = 0
 
 # Indica si se quiere colorear el texto que nos haya dado el chatbot
 COLOR_TEXT = True
@@ -69,6 +86,3 @@ VIEW_INSTRUCCION = True
 
 # Indica si el contexto se puede ver
 VIEW_CONTEXT = False
-
-# Indica el modelo que se usara en el chat
-MODEL = "ChatGPT"

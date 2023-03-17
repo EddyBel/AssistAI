@@ -1,114 +1,126 @@
-from settings import COUNT, GOODBYE_MESSAGES, WELCOME_MESSAGES, OPTIONS_HEADER, OPTIONS_BODY, NAME_USER, NAME_BOT, VIEW_NEW_INPUT, COLOR_TEXT, TYPING_EFFECT, VIEW_INSTRUCCION, VIEW_CONTEXT
+from settings import GOODBYE_MESSAGES, WELCOME_MESSAGES, OPTIONS_HEADER, OPTIONS_BODY, NAME_USER, NAME_BOT, VIEW_NEW_INPUT, COLOR_TEXT, TYPING_EFFECT, VIEW_INSTRUCCION, VIEW_CONTEXT, IA
 from colorama import Fore, Style
 from utils.format import replace_reference, color_code, search_and_replace_commands
-from utils.console import clear_console, print_table, bot_indicator, user_indicator
+from utils.console import clear_console, print_table, bot_indicator, user_indicator, charge_indicator
 from utils.effects import typingeffect
 from utils.generate import get_random_element_by_array
 from utils.files import save_chat
 from translate import _
 from models import openai
 import uuid
+import asyncio
 
-# Crea una instancia para el modelo chatGPT
-chatgpt = openai.ChatGPT()
+global my_id
+chat = None
 
-# Limpia la pantalla antes de iniciar la conversacion
+# En esta sección valida que IA vas a utilizar
+# Crea una instancia de la IA seleccionada
+# Si no coincide con ninguna imprime el error y cierra el programa
+if IA == "ChatGPT":
+    chat = openai.ChatGPT()
+else:
+    bot_indicator()
+    typingeffect("Ningun modelo fue seleccionado")
+    exit()
+
 clear_console()
 
-# Ejecuta el archivo como un script
-if __name__ == "__main__":
-    # Crea un nuevo id
-    myId = uuid.uuid4()
-    # Muestra el contexto que usa el bot si asi se solicita
+
+def print_data(text: str):
+    """Esta function imprime un texto con efecto typing si asi se solicita en la configuración."""
+    typingeffect(text) if TYPING_EFFECT else print(text)
+
+
+async def request(text: str):
+    # Solicita la respuesta de la API del chatbot
+    # Retorna el mensaje de respuesta coloreado si asi se solicita
+    response = chat.get_response(text=text)
+    return color_code(response) if COLOR_TEXT else response
+
+
+async def main():
+    # Asigna el id de la conversación
+    my_id = uuid.uuid4()
+
+    # Imprime el contexto del chat si asi se solcita
     if VIEW_CONTEXT:
-        print(f"{Style.DIM}{chatgpt.context}{Style.RESET_ALL}")
+        print(f"{Style.DIM}{chat.context}{Style.RESET_ALL}")
 
-    # Si la variable que indica que se muestra la tabla es verdadera entonces inicia las instrucciones.
+    # Imrpime las instrucciones del chatbot si asi se solicita
     if VIEW_INSTRUCCION:
-
-        # Agrega a la lista OPTIONS_BODY una sublista con el nombre del usuario y una descripción
-        OPTIONS_BODY.append(
-            [NAME_USER, _("Nombre de usuario")])
-        # Agrega a la lista OPTIONS_BODY otra sublista con el nombre del bot y otra descripción
-        OPTIONS_BODY.append([NAME_BOT, _("Nombre del bot")])
-        # Agrega a la lista OPTIONS_BODY una última sublista con el modelo que utiliza el chat y otra descripción
-        OPTIONS_BODY.append([chatgpt.model, _("Modelo del bot")])
-        # Al finalizar imprime la tabla con todas las instrucciones
         print_table(OPTIONS_HEADER, OPTIONS_BODY)
 
-    # Este texto inicia la conversacion
+    # Inicia la conversacion del bot
+    # El bot te dara un mensaje de saludo aleatorio
+    # Agreagara el nombre de ususario al mensaje si no lo tiene.
     bot_indicator()
-    # Obten un mensaje aleatorio de la lista de saludos
     welcome_mesage = get_random_element_by_array(WELCOME_MESSAGES)
-    # Remplza la ferencia por el nombre del usuario en el mensaje de vienvenida
     welcome_mesage = replace_reference(
         welcome_mesage, "{NAME_USER}", NAME_USER)
-    # Imprime el saludo
-    typingeffect(f"{welcome_mesage}\n")
+    typingeffect(f"{welcome_mesage}\n") if TYPING_EFFECT else print(
+        f"{welcome_mesage}")
 
-    # Iniciamos el Loop que ejecutara continuamente la conversacion con el Char
+    # Inicia el bucle de la conversacion
     while True:
 
         try:
-            # Definimos el texto de entrada que queremos enviar a la API de ChatGPT
+            # Define la entrada del usuario a la conversación
+            # Ejecuta alguna funcion extra si asi se marca en el input
+            # Imprime el nuevo input resultante si asi se marca en la configuración
             user_indicator()
-            # Ingresa la entrada del usuario
             question = input()
             prev_question = question
-            # Busca los caracteres especiales asignados en la constante KEYS para modifcar el input, si no se encuentran no haces nada
             question = search_and_replace_commands(question)
+            print(f"{Style.DIM}{Fore.LIGHTYELLOW_EX}{question}{Style.RESET_ALL}") if question != prev_question and VIEW_NEW_INPUT else ""
 
-            if question != prev_question and VIEW_NEW_INPUT:
-                print(f"{Style.DIM}{Fore.LIGHTYELLOW_EX}{question}{Style.RESET_ALL}")
-
-            # Crea diversas validaciones especiales para parar el programa
-            if (question == "stop"):
-                # Inicia la respuesta del bot de despedida antes de parar el programa
+            # Crea la validacion que para el programa si la entrada es igual al string "stop"
+            # Obten un mensaje aleatorio de despedida
+            # Imrpime el mensaje con efecto si asi se solicita
+            if question == "stop":
                 bot_indicator()
-                # Obten un mensaje aleatorio de la lista de mensajes
                 goodbye_message = get_random_element_by_array(GOODBYE_MESSAGES)
-                # Muestralo en la pantalla
-                typingeffect(Fore.LIGHTYELLOW_EX +
-                             goodbye_message + Style.RESET_ALL)
-                # Para el programa
+                print_data(
+                    f"{Fore.LIGHTYELLOW_EX}{goodbye_message}{Style.RESET_ALL}")
                 break
 
-            # Reinicia el bot para tener una nueva conversación
-            elif (question == "clean"):
-                clear_console()  # Limpia la consola
-                chatgpt.reset_conversation()  # Reinicia la conversación con el chatbot
-                myId = uuid.uuid4()  # Genera un nuevo identificador único para el usuario
-                bot_indicator()  # Muestra un indicador de que el chatbot está escribiendo
-                typingeffect(_("De que otro teme te gustaria hablar?") +
-                             "\n")  # Escribe con efecto de tipeo una pregunta al usuario
-                COUNT = 0  # Reinicia el contador de preguntas
-                continue  # Continua con el bucle principal
+            # Reinicia la conversación del bot si asi se solicita con el comando "clean"
+            # Crea un nuevo ID
+            # Imprime el mensaje de nuevo chat creado
+            elif question == "clean":
+                clear_console()
+                chat.reset_conversation()
+                my_id = uuid.uuid4()
+                bot_indicator()
+                meessage_new_chat = _("De que otro teme te gustaria hablar?")
+                print_data(f"{meessage_new_chat}\n")
+                continue
 
-            # Aumenta uno al contador de preguntas
-            COUNT += 1
-
-            # Inicia la respuesta del bot
+            # Inicia la repuesta del bot solicita desde su API
+            # Ejecuta la funcion que muestra un efecto de carga en la terminal
+            # Crea la peticion al bot
+            # Una vez se tenga la respuesta calcela la funcion que de carga en segundo plano
+            # Elimina el efecto e imprime el resultado de la petición
+            # Guarda la conversación en un archivo JSON
             bot_indicator()
-            # Pregunta al modelo de chatgpt
-            response = chatgpt.get_response(question)
-            # Si el texto tiene algo que se puede colorear colorealo y retorna la nueva respuesta, solo si en la configuracion se permite.
-            response = color_code(response) if COLOR_TEXT else response
-            # Muestra la respuesta del bot, y segun la configuracion has el efecto typing o no
-            if TYPING_EFFECT:
-                typingeffect(response)
-            else:
-                print(response)
-            # Guarda en un json la conversacion
-            save_chat(id=myId, model=chatgpt.model, chat=chatgpt.chat)
+            loading_task = asyncio.create_task(charge_indicator())
+            await asyncio.sleep(2)
+            response_message = await request(question)
+            loading_task.cancel()
+            print("\r" + " " * len("Loading ....") + "\r", end="", flush=True)
+            print_data(response_message)
+            save_chat(id=my_id, model=chat.model, chat=chat.chat)
 
-        # Muestra el error si asi lo hubo
-        except Exception as err:
-            # Obten el mensaje de error en el idioma requerido
-            error_msg = _("Ocurrio un error:")
-            # Verifica si se quiere colorear el texto
-            response = f"{Fore.RED}{error_msg} {err}{Style.RESET_ALL}\n" if COLOR_TEXT else f"{error_msg} {err}"
-            # Verifica si se quiere tener un efecto typing
-            if TYPING_EFFECT:
-                typingeffect(response)
-            else:
-                print(response)
+        except Exception as error:
+            # Si ocurrio un error al ejecutar el script obten ese error (Exception)
+            # Calcela la funcion de carga
+            # Elimina la impresión de carga
+            # Imprime el error obtenido del código
+            loading_task.cancel()
+            print("\r" + " " * len("Loading ....") + "\r", end="", flush=True)
+            msg_error = _("Ocurrio un error:")
+            response_color = f"{Fore.RED}{msg_error} {error}{Style.RESET_ALL}\n"
+            print_data(response_color)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
