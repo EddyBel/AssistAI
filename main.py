@@ -1,64 +1,88 @@
-from settings import GOODBYE_MESSAGES, WELCOME_MESSAGES, OPTIONS_HEADER, OPTIONS_BODY, NAME_USER, NAME_BOT, VIEW_NEW_INPUT, COLOR_TEXT, TYPING_EFFECT, VIEW_INSTRUCCION, VIEW_CONTEXT, IA
-from colorama import Fore, Style
-from utils.format import replace_reference, color_code, search_and_replace_commands
-from utils.console import clear_console, print_table, bot_indicator, user_indicator, charge_indicator
+from CodeChroma import Colors, TerminalColors
+from utils.format import replace_reference, search_and_replace_commands
+from utils.console import clear_console, print_table, bot_indicator, user_indicator, charge_indicator, clean_loader
 from utils.effects import typingeffect
 from utils.generate import get_random_element_by_array
 from utils.files import save_chat
 from translate import _
+from lib.voice import Voice
 from models import openai
+import threading
 import uuid
 import asyncio
+import settings
+import variables
 
-global my_id
-chat = None
-
-# En esta sección valida que IA vas a utilizar
-# Crea una instancia de la IA seleccionada
-# Si no coincide con ninguna imprime el error y cierra el programa
-if IA == "ChatGPT":
-    chat = openai.ChatGPT()
-else:
-    bot_indicator()
-    typingeffect("Ningun modelo fue seleccionado")
-    exit()
-
+colors = Colors()
+terminal_colors = TerminalColors()
 clear_console()
 
 
-def print_data(text: str):
-    """Esta function imprime un texto con efecto typing si asi se solicita en la configuración."""
-    typingeffect(text) if TYPING_EFFECT else print(text)
-
+async def print_data(text: str):
+    # Inicia a ejecutar la voz si asi se solicita
+    if settings.VOICE:
+        voice_thread = threading.Thread(target=Voice().speak, args=(text,))
+        voice_thread.start()
+   
+    # Esta function imprime un texto con efecto typing si asi se solicita en la configuración.
+    typingeffect(text) if settings.TYPING_EFFECT else print(text)
+    
+    # Esperar a que termine el subproceso de voz si se inicio
+    if settings.VOICE:
+        voice_thread.join()   
 
 async def request(text: str):
     # Solicita la respuesta de la API del chatbot
     # Retorna el mensaje de respuesta coloreado si asi se solicita
-    response = chat.get_response(text=text)
-    return color_code(response) if COLOR_TEXT else response
+    response = variables.CHAT.get_response(text=text)
+    return terminal_colors.coloring_text(response) if settings.COLOR_TEXT else response
 
 
 async def main():
     # Asigna el id de la conversación
-    my_id = uuid.uuid4()
-
+    # Guardala en una variable global
+    variables.ID = uuid.uuid4()
+    
+    # Pregunta el nombre del usuario al iniciar el programa
+    # Guarda el nombre de usuario y preguntalo solo si no existe un nombre
+    # Declarar la variable global NAME_USER
+    if settings.NAME_USER == "" :
+        bot_indicator()
+        question_name = _("Como te llamas?")
+        settings.NAME_USER = input(f"{question_name}: ")
+        
+    
+    # En esta sección valida que IA vas a utilizar
+    # Crea una instancia de la IA seleccionada
+    # Si no coincide con ninguna imprime el error y cierra el programa
+    if settings.IA == "ChatGPT":
+        variables.CHAT = openai.ChatGPT()
+    else:
+        bot_indicator()
+        typingeffect("Ningun modelo fue seleccionado")
+        exit()
+        
+    clear_console()
+        
     # Imprime el contexto del chat si asi se solcita
-    if VIEW_CONTEXT:
-        print(f"{Style.DIM}{chat.context}{Style.RESET_ALL}")
+    if settings.VIEW_CONTEXT:
+        print(colors.translucent(variables.CHAT.context))
+       
 
     # Imrpime las instrucciones del chatbot si asi se solicita
-    if VIEW_INSTRUCCION:
-        print_table(OPTIONS_HEADER, OPTIONS_BODY)
+    if settings.VIEW_INSTRUCCION:
+        print_table(settings.OPTIONS_HEADER, settings.OPTIONS_BODY)
 
     # Inicia la conversacion del bot
     # El bot te dara un mensaje de saludo aleatorio
     # Agreagara el nombre de ususario al mensaje si no lo tiene.
     bot_indicator()
-    welcome_mesage = get_random_element_by_array(WELCOME_MESSAGES)
+    welcome_mesage = get_random_element_by_array(settings.WELCOME_MESSAGES)
     welcome_mesage = replace_reference(
-        welcome_mesage, "{NAME_USER}", NAME_USER)
-    typingeffect(f"{welcome_mesage}\n") if TYPING_EFFECT else print(
-        f"{welcome_mesage}")
+        welcome_mesage, "{NAME_USER}", settings.NAME_USER)
+    await print_data(f"{welcome_mesage}\n")
+    # typingeffect(f"{welcome_mesage}\n") if TYPING_EFFECT else print(
+    #     f"{welcome_mesage}")
 
     # Inicia el bucle de la conversacion
     while True:
@@ -71,16 +95,15 @@ async def main():
             question = input()
             prev_question = question
             question = search_and_replace_commands(question)
-            print(f"{Style.DIM}{Fore.LIGHTYELLOW_EX}{question}{Style.RESET_ALL}") if question != prev_question and VIEW_NEW_INPUT else ""
+            print(colors.translucent(colors.yellow(question))) if question != prev_question and settings.VIEW_NEW_INPUT else ""
 
             # Crea la validacion que para el programa si la entrada es igual al string "stop"
             # Obten un mensaje aleatorio de despedida
             # Imrpime el mensaje con efecto si asi se solicita
             if question == "stop":
                 bot_indicator()
-                goodbye_message = get_random_element_by_array(GOODBYE_MESSAGES)
-                print_data(
-                    f"{Fore.LIGHTYELLOW_EX}{goodbye_message}{Style.RESET_ALL}")
+                goodbye_message = get_random_element_by_array(settings.GOODBYE_MESSAGES)
+                await print_data(colors.light_yellow(goodbye_message))
                 break
 
             # Reinicia la conversación del bot si asi se solicita con el comando "clean"
@@ -88,11 +111,11 @@ async def main():
             # Imprime el mensaje de nuevo chat creado
             elif question == "clean":
                 clear_console()
-                chat.reset_conversation()
-                my_id = uuid.uuid4()
+                variables.CHAT.reset_conversation()
+                variables.ID = uuid.uuid4()
                 bot_indicator()
                 meessage_new_chat = _("De que otro teme te gustaria hablar?")
-                print_data(f"{meessage_new_chat}\n")
+                await print_data(f"{meessage_new_chat}\n")
                 continue
 
             # Inicia la repuesta del bot solicita desde su API
@@ -106,9 +129,9 @@ async def main():
             await asyncio.sleep(2)
             response_message = await request(question)
             loading_task.cancel()
-            print("\r" + " " * len("Loading ....") + "\r", end="", flush=True)
-            print_data(response_message)
-            save_chat(id=my_id, model=chat.model, chat=chat.chat)
+            clean_loader()
+            await print_data(response_message)
+            save_chat(id=variables.ID, model=variables.CHAT.model, chat=variables.CHAT.chat)
 
         except Exception as error:
             # Si ocurrio un error al ejecutar el script obten ese error (Exception)
@@ -116,10 +139,10 @@ async def main():
             # Elimina la impresión de carga
             # Imprime el error obtenido del código
             loading_task.cancel()
-            print("\r" + " " * len("Loading ....") + "\r", end="", flush=True)
+            clean_loader()
             msg_error = _("Ocurrio un error:")
-            response_color = f"{Fore.RED}{msg_error} {error}{Style.RESET_ALL}\n"
-            print_data(response_color)
+            response_color = colors.red(f"{msg_error} {error}") + "\n"
+            await print_data(response_color)
 
 
 if __name__ == "__main__":

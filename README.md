@@ -14,7 +14,6 @@
 <img src="./assets/capture_4.png" width="100%" />
 <img src="./assets/capture_8.png" width="100%" />
 <img src="./assets/capture_6.png" width="100%" />
-<!-- <img src="./assets/capture_3.png" /> -->
 </p>
 
 This project consists of creating a chatbot that uses the OpenAI GPT-3.5-turbo language model to generate responses to user input. The chatbot runs in the terminal and communicates with the OpenAI api using the OpenAI python library.
@@ -56,6 +55,8 @@ The program has a series of settings that allow the model to behave in one way o
 | GOODBYE_MESSAGES | LIST[STRING] | This is a list of farewell messages that will be displayed at the end of the conversation                                                         |
 | OPTIONS_HEADER   | LIST[STRING] | These are the names that the instruction table uses as headers                                                                                    |
 | OPTIONS_BODY     | LIST[STRING] | This list represents the contents of the instruction table                                                                                        |
+| VOICE            | BOOLEAN      | This variable indicates whether a voice will be played with the text returned by the bot.                                                         |
+| API_KEY          | STRING       | This variable indicates the apikey to be used by the models that need it.                                                                         |
 
 ## Features
 
@@ -65,6 +66,7 @@ The program has a series of settings that allow the model to behave in one way o
 - [x] Compatible with the openai API which allows to integrate the available GPT models.
 - [x] Coloring of the code and text that the chatbot returns.
 - [x] Ability to use the content of files (especially code) to complement the input.
+- [x] You can play an audio with the bot's response.
 
 ### Future features
 

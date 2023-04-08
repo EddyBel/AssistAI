@@ -1,4 +1,4 @@
-Este es un texto de ejemplo que puede o no contener un código escrito
+Este es un texto de ejemplo que puede o no contener un código escrito "Ejemplo de texto en commillas", (otro ejemplo de información en parenteris)
 
 ```
 def clear_console() -> None:
@@ -107,6 +107,14 @@ class Program {
   "length": "3"
 }
 ```
+
+Este es un ejemplo de lista
+
+- Item 1
+- Item 2
+- Item 3
+- Item 4
+- Item 5
 
 y este es el final del texto de prueba que usare como ejemplo.
 

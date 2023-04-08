@@ -1,24 +1,18 @@
 from setuptools import setup
 
+readme = open("./README.md", "r")
 
 setup(
     # Nombre del proyecto
     name="Chat-Terminal",
     # Versión del proyecto
-    version="1.0.0",
+    version="1.5.0",
     # Descripción breve del proyecto
     description="Chatbot uses Chatgpt API to offer a natural conversation experience. The user interacts with the chatbot through the command terminal, allowing a simple and fast interaction. The chatbot is designed to answer common questions and offer assistance on different topics.",
     # Descripción larga del proyecto
-    long_description="""
-Chatbot uses Chatgpt API to offer a natural conversation experience. The user interacts with the chatbot through the command terminal, allowing a simple and fast interaction. The chatbot is designed to answer common questions and offer assistance on different topics.
-
-The project is built in Python programming language and uses the Chatgpt API library for integration with chatbot. The application also makes use of other Python libraries to handle interaction with the user and operations in the command terminal.
-
-Chatbot is designed for anyone looking for a natural and easy -to -use conversation experience, and can be customized to adapt to different needs and purposes.
-
-In general, the project offers an efficient and convenient chatbot solution that can be used in a wide variety of situations.""",
+    long_description=readme.read(),
     # Nombre del autor del proyecto
-    author="Eduardo Antonio Rangel Serrano",
+    author="Eduardo Rangel",
     # Correo electrónico del autor del proyecto
     author_email="kratos61918@gmail.com",
     # URL del sitio web del proyecto
@@ -45,7 +39,7 @@ In general, the project offers an efficient and convenient chatbot solution that
         "Operating System :: OS Independent",
     ],
     # Versión mínima de Python necesaria para el proyecto
-    python_requires=">=3.6",  
+    python_requires=">=3.7",  
     # Dependencias necesarias para el proyecto
     install_requires=[  
         "aiohttp == 3.8.4",
