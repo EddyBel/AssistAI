@@ -1,0 +1,74 @@
+.content {
+  height: 100%;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 100px;
+}
+
+.content-subtitle {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.context-text-subtitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  max-width: 900px;
+  animation: watch_subtitle 900ms normal;
+}
+
+@keyframes watch_subtitle {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.button-microphone {
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 4rem;
+  text-align: center;
+  border: 2px solid var(--border_button);
+  border-radius: 68px;
+  margin-bottom: 10px;
+
+  background: linear-gradient(
+    145deg,
+    var(--neomorphist_background_1),
+    var(--neomorphist_background_2)
+  );
+  /* box-shadow: 8px 8px 10px var(--neomorphist_shadow_1),
+    -8px -8px 10px var(--neomorphist_shadow_2); */
+  transition: background 300ms, color 300ms, transform 300ms;
+}
+
+.button-microphone svg {
+  fill: var(--text);
+}
+
+.button-microphone:hover {
+  background: var(--background_button_hover);
+  color: var(--text_inverse);
+  transform: translateY(-5px);
+}
+
+.button-microphone:hover svg {
+  fill: var(--text_inverse);
+}

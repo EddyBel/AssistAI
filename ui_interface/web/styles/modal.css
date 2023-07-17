@@ -1,0 +1,17 @@
+.modal__config {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 90%;
+  max-width: 800px;
+  height: 80vh;
+  background: var(--background_config);
+  border: 2px solid var(--border_config);
+  border-radius: 20px;
+  transform: translateY(-150%);
+  transition: transform 500ms;
+}

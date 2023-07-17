@@ -1,0 +1,47 @@
+.canvas-sphere {
+  height: 250px;
+  width: 250px;
+  margin: 0 auto;
+  perspective: 2000px;
+  perspective-origin: center center;
+  position: relative;
+}
+
+.canvas-sphere.animate {
+  animation: moveAudio infinite 3.5s;
+}
+
+.point {
+  background: var(--points);
+  border-radius: 50%;
+  height: 4px;
+  position: absolute;
+  transform-style: preserve-3d;
+  width: 4px;
+}
+
+@keyframes moveAudio {
+  0%,
+  100% {
+    transform: scale(0.8);
+  }
+  10%,
+  60% {
+    transform: scale(1);
+  }
+  20%,
+  70% {
+    transform: scale(1.1);
+  }
+  30%,
+  80% {
+    transform: scale(1);
+  }
+  40%,
+  90% {
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}

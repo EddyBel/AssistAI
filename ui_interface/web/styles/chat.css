@@ -1,0 +1,203 @@
+.section-chat {
+  width: 40%;
+  position: absolute;
+  z-index: 100;
+  min-height: 100vh;
+  max-height: 100vh;
+  background: var(--background_chat);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  transition: transform 400ms;
+  transform: translateX(-100%);
+  overflow: hidden;
+}
+
+.section-chat.view {
+  transform: translateX(0%);
+}
+
+.chat-container-chats {
+  min-height: 60vh;
+  max-height: 60vh;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  background: var(--background);
+  padding: 16px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Input of question */
+
+.input {
+  color: var(--text);
+  font-size: 0.4rem;
+  resize: none;
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+  border-bottom: var(--border-height) solid var(--border-before-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input-border {
+  position: absolute;
+  background: var(--border-after-color);
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input:focus + .input-border {
+  width: 100%;
+}
+
+.form-control {
+  position: relative;
+  --width-of-input: 300px;
+}
+
+.input-alt {
+  font-size: 1rem;
+  height: 20vh;
+  padding-inline: 1em;
+  padding-block: 0.8em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.input-border-alt {
+  height: 3px;
+  background: linear-gradient(90deg, #ff6464 0%, #ffbf59 50%, #47c9ff 100%);
+  transition: width 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.input-alt:focus + .input-border-alt {
+  width: 100%;
+}
+
+/* Button Send */
+
+.container__buttons__send__and__trash {
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.button-send,
+.button-trash {
+  appearance: none;
+  background-color: transparent;
+  border: 0.125em solid var(--border_button);
+  border-radius: 0.9375em;
+  box-sizing: border-box;
+  /* color: #3b3b3b; */
+  color: var(--text);
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 3.75em;
+  min-width: 0;
+  width: 100%;
+  outline: none;
+  padding: 1em 2.3em;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  will-change: transform;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-trash {
+  width: 100px;
+  padding: 1em;
+}
+
+.button-send svg,
+.button-trash svg {
+  width: 2rem;
+}
+
+.button-send:disabled,
+.button-trash:disabled {
+  pointer-events: none;
+}
+
+.button-send:hover,
+.button-trash:hover {
+  color: var(--text_inverse);
+  background-color: var(--background_button_hover);
+  box-shadow: var(--shadow_button) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-send:focus,
+.button-trash:focus {
+  color: var(--text_inverse);
+  background-color: var(--background_button_hover);
+  box-shadow: var(--shadow_button) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-send:hover svg,
+.button-trash:hover svg {
+  fill: var(--text_inverse);
+}
+
+.button-send:focus svg,
+.button-trash:focus svg {
+  fill: var(--text_inverse);
+}
+
+.button-send:active,
+.button-trash:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+/* Bubble chats */
+
+.chat-bubble {
+  width: 100%;
+  padding: 15px;
+  background: var(--background_bubble_bot);
+  border-radius: 12px;
+  margin-bottom: 15px;
+  color: var(--text_inverse);
+}
+
+.bubble-role {
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+.chat-bubble.system {
+  background: var(--background_bubble_system);
+}
+
+.chat-bubble.user {
+  background: var(--background_bubble_user);
+  color: var(--text);
+}

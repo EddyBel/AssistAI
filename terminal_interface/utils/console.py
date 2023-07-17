@@ -3,7 +3,6 @@ from rich.table import Table
 from rich.console import Console
 import os
 import asyncio
-import settings
 
 # Crea una instancia de la consola para centrar elementos, y la instancia para colorear texto
 console = Console()
@@ -12,10 +11,10 @@ colors = Colors()
 
 def clear_console() -> None:
     """Esta funcion limpia la pantalla."""
-    if os.name == 'nt':  # si el sistema operativo es Windows
-        os.system('cls')  # ejecuta el comando cls
+    if os.name == "nt":  # si el sistema operativo es Windows
+        os.system("cls")  # ejecuta el comando cls
     else:  # si el sistema operativo es Linux o MacOS
-        os.system('clear')  # ejecuta el comando clear
+        os.system("clear")  # ejecuta el comando clear
 
 
 def print_table(headers: list, body: list, title: str = "Instrucciones"):
@@ -39,14 +38,15 @@ def print_table(headers: list, body: list, title: str = "Instrucciones"):
     print()
 
 
-def bot_indicator() -> None:
+def bot_indicator(name_bot: str) -> None:
     """Esta funcion imprime la referencia que el bot esta hablando en el char"""
-    print(colors.blue(f"@[{settings.NAME_BOT}]"))
+    print(colors.blue(f"@[{name_bot}]"))
 
 
-def user_indicator() -> None:
+def user_indicator(name_user: str) -> None:
     """Esta funcion imprime la referencia que el usuario esta hablando en el char"""
-    print(colors.cyan(f"@[{settings.NAME_USER}]"))
+    print(colors.cyan(f"@[{name_user}]"))
+
 
 async def charge_indicator():
     """Esta funcion crea un efecto de carga en la terminal"""
@@ -59,7 +59,8 @@ async def charge_indicator():
         i += 1
         await asyncio.sleep(0.1)
         print("\r" + " " * 20 + "\r", end="", flush=True)
-        
-def clean_loader ():
+
+
+def clean_loader():
     # Funcion a retornar
-    print("\r" + " " * len("Loading ....") + "\r", end="", flush=True) 
+    print("\r" + " " * len("Loading ....") + "\r", end="", flush=True)

@@ -1,0 +1,55 @@
+.navbar {
+  width: 100vw;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+}
+
+.navbar-button-menu {
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  text-align: center;
+  transition: transform 300ms;
+  border-radius: 68px;
+  background: linear-gradient(
+    145deg,
+    var(--neomorphist_background_1),
+    var(--neomorphist_background_2)
+  );
+  box-shadow: 8px 8px 10px var(--neomorphist_shadow_1),
+    -8px -8px 10px var(--neomorphist_shadow_2);
+}
+
+.navbar-button-menu:hover {
+  transform: scale(1.1);
+}
+
+.navbar-data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+}
+
+.navbar-data {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.7rem;
+  padding: 8px;
+  border-radius: 50px;
+  background: linear-gradient(
+    145deg,
+    var(--neomorphist_background_1),
+    var(--neomorphist_background_2)
+  );
+  box-shadow: 8px 8px 10px var(--neomorphist_shadow_1),
+    -8px -8px 10px var(--neomorphist_shadow_2);
+}

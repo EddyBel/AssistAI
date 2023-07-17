@@ -1,0 +1,61 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #18191a;
+    --points: #abb2b9;
+
+    /* Chat menu colors */
+    --background_chat: #000;
+    --background_bubble_user: #000;
+    --background_bubble_bot: #2c3e50;
+    --background_bubble_system: #0e6655;
+
+    /* Colors of single buttons */
+    --background_button: #1a1a1a;
+    --background_button_hover: #d5d8dc;
+    --border_button: #d5d8dc;
+    --shadow_button: rgba(255, 255, 255, 0.25);
+
+    /* Text colors  */
+    --text: #d5d8dc;
+    --text_inverse: #1a1a1a;
+
+    /* Colors for neomorphist button gradients */
+    --neomorphist_background_1: #191919;
+    --neomorphist_background_2: #151515;
+    --neomorphist_shadow_1: #0e0e0e;
+    --neomorphist_shadow_2: #202020;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #eaecee;
+    --points: #17202a;
+
+    /* Colors of the configurations */
+    --background_config: #fff;
+    --border_config: #17202a79;
+
+    /* Chat menu colors */
+    --background_chat: #fff;
+    --background_bubble_user: #fff;
+    --background_bubble_bot: #ff9c9c;
+    --background_bubble_system: #a3e4d7;
+
+    /* Colors of single buttons */
+    --background_button: #1a1a1a;
+    --background_button_hover: #1a1a1a;
+    --border_button: #1a1a1a;
+    --shadow_button: rgba(0, 0, 0, 0.25);
+
+    /* Text colors  */
+    --text: #1a1a1a;
+    --text_inverse: #eaecee;
+
+    /* Colors for neomorphist button gradients */
+    --neomorphist_background_1: #f0f0f0;
+    --neomorphist_background_2: #cacaca;
+    --neomorphist_shadow_1: #8b8b8b;
+    --neomorphist_shadow_2: #ffffff;
+  }
+}
