@@ -1,4 +1,4 @@
-<h1 align="center">Chat Terminal</h1>
+<h1 align="center">AssistAI</h1>
 
 <p align="center" >
 <img src="https://img.shields.io/github/last-commit/EddyBel/Chat-Terminal?color=%23AED6F1&style=for-the-badge" />
@@ -11,9 +11,12 @@
 <p align="center">Simple chatbot from the terminal</p>
 
 <p aling="center" >
+<h2 align="center" >UI Version</h2>
+<img src="./assets/Preview-UI4.png" width="100%" />
+<img src="./assets/Preview-UI3.png" width="100%" />
+<h2 align="center" >Terminal Version</h2>
 <img src="./assets/capture_4.png" width="100%" />
 <img src="./assets/capture_8.png" width="100%" />
-<img src="./assets/capture_6.png" width="100%" />
 </p>
 
 This project consists of creating a chatbot that uses the OpenAI GPT-3.5-turbo language model to generate responses to user input. The chatbot runs in the terminal and communicates with the OpenAI api using the OpenAI python library.

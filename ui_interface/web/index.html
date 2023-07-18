@@ -31,10 +31,19 @@
     <link rel="stylesheet" href="./styles/content.css" />
     <link rel="stylesheet" href="./styles/chat.css" />
     <link rel="stylesheet" href="./styles/modal.css" />
+    <link rel="stylesheet" href="./styles/components/backendLoaders.css" />
 
     <title>Assistant</title>
   </head>
   <body>
+    <audio
+      src="./assets/saved voice recording start.mp3"
+      id="effect_voice_recording_start"
+    ></audio>
+    <audio
+      src="./assets/saved voice recording end.mp3"
+      id="effect_voice_recording_end"
+    ></audio>
     <audio id="audio-voice-response"></audio>
 
     <!-- Navigation bar -->
@@ -81,6 +90,19 @@
       <div>
         <input type="checkbox" id="checkboxAnimationSphere" />
         <label for="checkboxAnimationSphere" class="toggleSwitch"> </label>
+      </div>
+    </section>
+
+    <!-- Backend load indicators -->
+    <section class="backend_load_indicators">
+      <div class="loaded_processing_audio">
+        <div class="loading">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </section>
 
@@ -164,7 +186,7 @@
         <p class="context-text-subtitle"></p>
       </div>
       <div id="canvas" class="canvas-sphere"></div>
-      <button class="button-microphone">
+      <button class="button-microphone" id="button_microfone">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -195,6 +217,8 @@
     <!-- Basic utility scripts  -->
     <script src="./js/util/DOMUtils.js"></script>
     <script src="./js/util/format.js"></script>
+    <!-- Customized bookcases -->
+    <script src="./js/lib/voice.js"></script>
     <!-- Functions that manage the status of the web -->
     <script src="./js/store/types.js"></script>
     <script src="./js/store/reducer.js"></script>
@@ -205,10 +229,12 @@
     <script src="./js/render/conversation.js"></script>
     <script src="./js/render/information.js"></script>
     <!-- Functionality scripts -->
-    <script src="./js/dom/chatWatch.js"></script>
     <script src="./js/event/conversation.js"></script>
     <script src="./js/event/dom.js"></script>
     <script src="./js/event/configuration.js"></script>
+    <script src="./js/event/voice.js"></script>
+    <!-- Functions that manipulate DOM updates -->
+    <script src="./js/updates/conversation.js"></script>
     <!-- Scripts that make calls to python -->
     <script src="./js/api/information.js"></script>
     <script src="./js/api/conversation.js"></script>

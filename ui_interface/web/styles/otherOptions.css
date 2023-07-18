@@ -59,7 +59,6 @@
   /* slider */
   --slider-width: 100%;
   --slider-height: 6px;
-  --slider-bg: rgb(82, 82, 82);
   --slider-border-radius: 999px;
   /* level */
   --level-color: #fff;
@@ -112,8 +111,8 @@
   -webkit-appearance: none;
   width: 0;
   height: 0;
-  -webkit-box-shadow: -200px 0 0 200px var(--level-color);
-  box-shadow: -200px 0 0 200px var(--level-color);
+  -webkit-box-shadow: -200px 0 0 200px var(--slider-color);
+  box-shadow: -200px 0 0 200px var(--slider-color);
 }
 
 .slider:hover .level {

@@ -37,3 +37,8 @@ class FileManager:
         body = base64.b64encode(body)
         body = self.removeBytesSuffix(str(body))
         return body
+
+    def writeFileBytes(self, name_file: str, bytes):
+        bytes = base64.b64decode(bytes)
+        with open(name_file, "wb") as file:
+            file.write(bytes)

@@ -37,27 +37,46 @@ class CoreAssistant:
             self.chat.append({"role": "assistant", "content": message_error})
             return message_error
 
-    def create_voice_from_response(self):
+    def create_voice_from_response(self, lang: str = "en"):
         from .lib.voice import Voice
         from .utils.filesmanager import FileManager
         import os
 
         filemanager = FileManager()
         voice = Voice()
-        voice.text_to_spech(self.lastresponse)
+        voice.text_to_spech(self.lastresponse, lang)
 
-        return filemanager.readFileBytes(os.path.join(os.getcwd(), "core/audio.mp3"))
+        return filemanager.readFileBytes(
+            os.path.join(os.getcwd(), "core/audio/response.mp3")
+        )
 
-    def create_voice(self, text: str):
+    def create_voice(self, text: str, lang: str = "en"):
         from .lib.voice import Voice
         import os
         from .utils.filesmanager import FileManager
 
         filemanager = FileManager()
         voice = Voice()
-        voice.text_to_spech(text)
+        voice.text_to_spech(text, lang)
 
-        return filemanager.readFileBytes(os.path.join(os.getcwd(), "core/audio.mp3"))
+        return filemanager.readFileBytes(
+            os.path.join(os.getcwd(), "core/audio/response.mp3")
+        )
+
+    def create_audio(self, bytes: str):
+        from .utils.filesmanager import FileManager
+
+        filemanager = FileManager()
+        filemanager.writeFileBytes("core/audio/voice.mp3", bytes)
+        return bytes
+
+    def get_response_by_voice(self, bytes: str):
+        from .lib.voice import Voice
+
+        voice = Voice()
+        self.create_audio(bytes)
+        response = voice.spech_to_text()
+        return response
 
     def reset_conversation(self):
         self.chat = [{"role": "system", "content": self.context}]

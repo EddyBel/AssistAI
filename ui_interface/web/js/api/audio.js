@@ -26,6 +26,7 @@ function createAudioByLastResponse() {
 }
 
 function createAudioByText(text) {
+  ELEMENTS.containerBackendLoader.classList.add("view");
   eel.get_audio(text)(function (response) {
     // Decodes the content in base64
     const bytes = decodeBase64ToBytes(response);
@@ -47,6 +48,7 @@ function createAudioByText(text) {
 
       ELEMENTS.canvasSphere.classList.add("animate");
       ELEMENTS.audioVoice.play();
+      ELEMENTS.containerBackendLoader.classList.remove("view");
     });
   });
 }

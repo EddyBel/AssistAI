@@ -54,6 +54,24 @@ function reducer(state, action) {
         },
       };
 
+    case TYPES.SHOW_CONVERSATION:
+      return {
+        ...state,
+        DOM: {
+          ...state.DOM,
+          isShowConversations: true,
+        },
+      };
+
+    case TYPES.HIDDEN_CONVERSATION:
+      return {
+        ...state,
+        DOM: {
+          ...state.DOM,
+          isShowConversations: false,
+        },
+      };
+
     default:
       return state;
   }

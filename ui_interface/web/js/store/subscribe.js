@@ -9,4 +9,6 @@ store.subscribe(() => {
 
   sphereRotationActivateAndDeactivate(state.DOM.isRotatingSphere);
   updateVolumeAudio(state.configuration.voiceVolume);
+
+  hiddenAndWatchConversationsMenu(state.DOM.isShowConversations);
 });

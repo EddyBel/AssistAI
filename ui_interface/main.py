@@ -1,6 +1,7 @@
 import eel
 import base64
-from settings import MODEL, IA, API_KEY, NAME_BOT, NAME_USER
+from time import sleep
+from settings import MODEL, IA, API_KEY, NAME_BOT, NAME_USER, LANGUAGE
 from core.main import CoreAssistant
 from utils.define_text import TEXT
 from utils.format import replace_reference
@@ -20,7 +21,13 @@ eel.init("ui_interface/web")
 
 @eel.expose
 def get_info_model():
-    return {"model": MODEL, "ia": IA, "name_bot": NAME_BOT, "name_user": NAME_USER}
+    return {
+        "model": MODEL,
+        "ia": IA,
+        "lang": LANGUAGE,
+        "name_bot": NAME_BOT,
+        "name_user": NAME_USER,
+    }
 
 
 @eel.expose
@@ -63,13 +70,34 @@ def get_conversation():
 
 @eel.expose
 def get_audio(text):
-    return core_assistant.create_voice(text)
+    return core_assistant.create_voice(text, lang=LANGUAGE)
 
 
 @eel.expose
 def get_audio_from_response():
-    audio_bytes = core_assistant.create_voice_from_response()
+    audio_bytes = core_assistant.create_voice_from_response(lang=LANGUAGE)
     return audio_bytes
+
+
+@eel.expose
+def get_response_by_voice(bytesBase64):
+    response_whisper = core_assistant.get_response_by_voice(bytesBase64)
+
+    try:
+        time_sleep = response_whisper["estimated_time"]
+        print("Esperando a que cargue " + str(time_sleep))
+        sleep(time_sleep + 1)
+        response_whisper = core_assistant.get_response_by_voice(bytesBase64)
+
+        question = response_whisper["text"]
+        response = core_assistant.get_response_from_model(question=question)
+
+        return {"response": response, "conversation": core_assistant.chat}
+
+    except:
+        question = response_whisper["text"]
+        response = core_assistant.get_response_from_model(question=question)
+        return {"response": response, "conversation": core_assistant.chat}
 
 
 eel.start("index.html")

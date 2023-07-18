@@ -3,6 +3,10 @@
     --background: #18191a;
     --points: #abb2b9;
 
+    /* Inputs and sliders colors */
+    --slider-color: #abb2b9;
+    --slider-bg: rgb(80, 80, 80);
+
     /* Chat menu colors */
     --background_chat: #000;
     --background_bubble_user: #000;
@@ -31,6 +35,10 @@
   :root {
     --background: #eaecee;
     --points: #17202a;
+
+    /* Inputs and sliders colors */
+    --slider-color: #1a1a1a;
+    --slider-bg: rgb(173, 173, 173);
 
     /* Colors of the configurations */
     --background_config: #fff;

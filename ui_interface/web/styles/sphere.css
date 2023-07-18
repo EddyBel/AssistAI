@@ -9,6 +9,7 @@
 
 .canvas-sphere.animate {
   animation: moveAudio infinite 3.5s;
+  animation-fill-mode: forwards;
 }
 
 .point {

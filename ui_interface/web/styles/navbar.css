@@ -19,13 +19,7 @@
   text-align: center;
   transition: transform 300ms;
   border-radius: 68px;
-  background: linear-gradient(
-    145deg,
-    var(--neomorphist_background_1),
-    var(--neomorphist_background_2)
-  );
-  box-shadow: 8px 8px 10px var(--neomorphist_shadow_1),
-    -8px -8px 10px var(--neomorphist_shadow_2);
+  background: var(--background_chat);
 }
 
 .navbar-button-menu:hover {
@@ -43,13 +37,7 @@
   text-transform: uppercase;
   font-weight: bold;
   font-size: 0.7rem;
-  padding: 8px;
+  padding: 10px;
   border-radius: 50px;
-  background: linear-gradient(
-    145deg,
-    var(--neomorphist_background_1),
-    var(--neomorphist_background_2)
-  );
-  box-shadow: 8px 8px 10px var(--neomorphist_shadow_1),
-    -8px -8px 10px var(--neomorphist_shadow_2);
+  background: var(--background_chat);
 }

@@ -25,6 +25,7 @@
   padding: 16px;
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative;
 }
 
 /* Input of question */
@@ -200,4 +201,80 @@
 .chat-bubble.user {
   background: var(--background_bubble_user);
   color: var(--text);
+}
+
+/* Loader conversation */
+
+@keyframes bounce {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.loader_conversation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(83, 82, 82);
+  border-radius: 50%;
+  margin: 2px;
+  animation: bounce 1.2s infinite ease-in-out;
+}
+
+.circle:nth-child(2) {
+  animation-delay: -0.1s;
+}
+
+.circle:nth-child(3) {
+  animation-delay: -0.2s;
+}
+
+.circle:nth-child(4) {
+  animation-delay: -0.3s;
+}
+
+.circle:nth-child(5) {
+  animation-delay: -0.4s;
+}
+
+.circle:nth-child(6) {
+  animation-delay: -0.5s;
+}
+
+.circle:nth-child(7) {
+  animation-delay: -0.6s;
+}
+
+.circle:nth-child(8) {
+  animation-delay: -0.7s;
+}
+
+.circle:nth-child(9) {
+  animation-delay: -0.8s;
+}
+
+.circle:nth-child(10) {
+  animation-delay: -0.9s;
 }

@@ -48,7 +48,7 @@
   border: 2px solid var(--border_button);
   border-radius: 68px;
   margin-bottom: 10px;
-
+  position: relative;
   background: linear-gradient(
     145deg,
     var(--neomorphist_background_1),
@@ -58,7 +58,6 @@
     -8px -8px 10px var(--neomorphist_shadow_2); */
   transition: background 300ms, color 300ms, transform 300ms;
 }
-
 .button-microphone svg {
   fill: var(--text);
 }
@@ -66,9 +65,12 @@
 .button-microphone:hover {
   background: var(--background_button_hover);
   color: var(--text_inverse);
-  transform: translateY(-5px);
 }
 
 .button-microphone:hover svg {
   fill: var(--text_inverse);
+}
+
+.button-microphone:active {
+  transform: translateY(-5px);
 }

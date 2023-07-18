@@ -9,6 +9,8 @@ const initialState = {
   },
   DOM: {
     isRotatingSphere: true,
+    isShowConversations: false,
+    isShowConfigurations: false,
   },
 };
 
