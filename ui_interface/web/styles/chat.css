@@ -10,6 +10,10 @@
   transition: transform 400ms;
   transform: translateX(-100%);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .section-chat.view {
@@ -19,6 +23,7 @@
 .chat-container-chats {
   min-height: 60vh;
   max-height: 60vh;
+  width: 100%;
   border-radius: 20px;
   margin-bottom: 15px;
   background: var(--background);
@@ -47,7 +52,7 @@
 .input-border {
   position: absolute;
   background: var(--border-after-color);
-  width: 0%;
+  width: 100%;
   height: 2px;
   bottom: 0;
   left: 0;
@@ -63,6 +68,7 @@
 }
 
 .form-control {
+  width: 100%;
   position: relative;
   --width-of-input: 300px;
 }
@@ -93,6 +99,7 @@
   /* align-items: center; */
   gap: 10px;
   margin-top: 14px;
+  width: 100%;
 }
 
 .button-send,
