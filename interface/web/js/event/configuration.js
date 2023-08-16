@@ -1,4 +1,4 @@
-ELEMENTS.audioVolume.addEventListener("mousemove", (evt) => {
+ELEMENTS.audioVolume.addEventListener("input", (evt) => {
   const volume = evt.target.value;
   store.dispatch({ type: TYPES.UPDATE_VOLUMEN_VOICE, payload: volume });
 });

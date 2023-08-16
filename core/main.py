@@ -38,6 +38,8 @@ class CoreAssistant:
             return message_error
 
     def create_voice_from_response(self, lang: str = "en"):
+
+
         from .lib.voice import Voice
         from .utils.filesmanager import FileManager
         import os

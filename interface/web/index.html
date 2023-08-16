@@ -23,15 +23,63 @@
     />
 
     <!-- Personal css styles -->
-    <link rel="stylesheet" href="./styles/colors.css" />
-    <link rel="stylesheet" href="./styles/base.css" />
-    <link rel="stylesheet" href="./styles/sphere.css" />
-    <link rel="stylesheet" href="./styles/navbar.css" />
-    <link rel="stylesheet" href="./styles/otherOptions.css" />
-    <link rel="stylesheet" href="./styles/content.css" />
-    <link rel="stylesheet" href="./styles/chat.css" />
-    <link rel="stylesheet" href="./styles/modal.css" />
-    <link rel="stylesheet" href="./styles/components/backendLoaders.css" />
+
+    <!-- Base css -->
+    <link
+      rel="stylesheet"
+      href="./styles/utils/colors.css"
+      type="text/css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="./styles/base/reset.css"
+      type="text/css"
+      media="all"
+    />
+
+    <!-- Components CSS -->
+    <link
+      rel="stylesheet"
+      href="./styles/components/navbar.css"
+      type="text/css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="./styles/components/sphere.css"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      href="./styles/components/conversation.css"
+      type="text/css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="./styles/components/backendLoaders.css"
+      type="text/css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="./styles/components/body.css"
+      type="text/css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="./styles/components/conversation.css"
+      type="text/css"
+      media="all"
+    />
+    <link
+      rel="stylesheet"
+      href="./styles/components/fastConfigurations.css"
+      type="text/css"
+      media="all"
+    />
 
     <title>Assistant</title>
   </head>
@@ -48,7 +96,7 @@
 
     <!-- Navigation bar -->
     <nav class="navbar">
-      <button class="navbar-button-menu">
+      <button class="navbar-button-menu" title="View Chat">
         <i class="bi bi-chat-fill"></i>
       </button>
       <div class="navbar-data-container"></div>
@@ -58,7 +106,7 @@
     <section class="other_options_container">
       <div>
         <label class="slider">
-          <input type="range" class="level" id="volume-voice" />
+          <input type="range" class="level" id="volume-voice" placeholder="" />
           <svg
             class="volume"
             xmlns="http://www.w3.org/2000/svg"

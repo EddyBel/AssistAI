@@ -2,8 +2,8 @@ from settings import INTERFACE
 
 
 if INTERFACE == "ui":
-    import ui_interface.main
+    import interface.main
 elif INTERFACE == "terminal":
-    import terminal_interface.main
+    import cmd.main
 
 print("Finish tu run")

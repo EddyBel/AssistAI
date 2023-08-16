@@ -12,11 +12,11 @@
 
 <p aling="center" >
 <h2 align="center" >UI Version</h2>
-<img src="./assets/Preview-UI4.png" width="100%" />
-<img src="./assets/Preview-UI3.png" width="100%" />
+<img src="./assets/Preview.png" width="100%" />
+<img src="./assets/Preview_2.png" width="100%" />
 <h2 align="center" >Terminal Version</h2>
-<img src="./assets/capture_4.png" width="100%" />
-<img src="./assets/capture_8.png" width="100%" />
+<img src="./assets/Preview_4.png" width="100%" />
+<img src="./assets/Preview_3.png" width="100%" />
 </p>
 
 This project consists of creating a chatbot that uses the OpenAI GPT-3.5-turbo language model to generate responses to user input. The chatbot runs in the terminal and communicates with the OpenAI api using the OpenAI python library.
@@ -134,8 +134,8 @@ python main.py
 <p align="center">
   <a href="https://github.com/EddyBel" target="_blank">
     <img alt="Github" src="https://img.shields.io/badge/GitHub-%2312100E.svg?&style=for-the-badge&logo=Github&logoColor=white" />
-  </a> 
+  </a>
   <a href="https://www.linkedin.com/in/eduardo-rangel-eddybel/" target="_blank">
     <img alt="LinkedIn" src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a> 
+  </a>
 </p>

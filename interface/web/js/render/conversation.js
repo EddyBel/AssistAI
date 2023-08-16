@@ -24,3 +24,17 @@ function renderOfChats(conversation) {
 function renderSubtitle(message) {
   ELEMENTS.assistantSubtitle.innerHTML = message;
 }
+
+function renderSubtitleWithEffect(text) {
+  if (text) {
+    ELEMENTS.assistantSubtitle.innerHTML = "";
+    let index = 0;
+    let interval = setInterval(function () {
+      ELEMENTS.assistantSubtitle.textContent += text[index];
+      index++;
+      if (index >= text.length) {
+        clearInterval(interval);
+      }
+    }, 30);
+  }
+}

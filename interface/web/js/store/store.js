@@ -8,7 +8,7 @@ const initialState = {
     voiceVolume: 50,
   },
   DOM: {
-    isRotatingSphere: true,
+    isRotatingSphere: false,
     isShowConversations: false,
     isShowConfigurations: false,
   },

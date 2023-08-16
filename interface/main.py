@@ -1,5 +1,4 @@
 import eel
-import base64
 from time import sleep
 from settings import MODEL, IA, API_KEY, NAME_BOT, NAME_USER, LANGUAGE
 from core.main import CoreAssistant
@@ -16,7 +15,7 @@ core_assistant.load_model()
 
 count = 0
 
-eel.init("ui_interface/web")
+eel.init("interface/web")
 
 
 @eel.expose
