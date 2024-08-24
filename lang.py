@@ -2,7 +2,7 @@ import json
 
 
 def load_languages(file_name: str):
-    with open(file_name, "r") as file:
+    with open(file_name, "r", encoding="utf-8") as file:
         return json.load(file)
 
 
